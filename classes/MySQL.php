@@ -12,7 +12,7 @@
   *
   */
 
-define('_PS_DEBUG_', true);
+define('_PS_DEBUG_', false);
 
 class MySQL extends Db
 {
