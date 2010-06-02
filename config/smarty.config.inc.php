@@ -112,8 +112,8 @@ function smarty_modifier_truncate($string, $length = 80, $etc = '...',
 		return $string;
 	}
 }
-
 $smarty->register_modifier('truncate', 'smarty_modifier_truncate');
+$smarty->register_modifier('secureReferrer', array('Tools', 'secureReferrer'));
 
 global $link;
 
