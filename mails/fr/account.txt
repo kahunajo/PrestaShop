@@ -5,6 +5,7 @@ Vos codes d'accès :
 Adresse électronique : {email}
 Mot de passe : {passwd}
 
+
 Vous pouvez dès à présent passer commande sur notre site Internet :
 {shop_url}
 
