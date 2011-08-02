@@ -601,7 +601,7 @@ class BlockCms extends Module
 				$id_cms_block = Tools::getvalue('id_cms_block');
 				
 				$old_block = Db::getInstance()->ExecuteS('
-				SELECT `location`, `position` 
+				SELECT `location`, `position`, `display_store`
 				FROM `'._DB_PREFIX_.'cms_block` 
 				WHERE `id_cms_block` = '.(int)$id_cms_block);
 				
@@ -615,7 +615,14 @@ class BlockCms extends Module
 					UPDATE `'._DB_PREFIX_.'cms_block` 
 					SET `position` = (`position` - 1) WHERE `position` > '.(int)$old_block[0]['position'].' 
 					AND `location` = '.(int)$old_block[0]['location']);
-				
+					
+				$display_store_change = ($old_block[0]['display_store'] != (int)Tools::getvalue('display_store'));
+				if ($display_store_change)
+					Db::getInstance()->Execute('
+					UPDATE `'._DB_PREFIX_.'configuration`
+					SET `value` = '.(int)(Tools::getValue('display_store')).'
+					WHERE `name` = "PS_STORES_DISPLAY_FOOTER"');
+	
 				Db::getInstance()->Execute('
 				UPDATE `'._DB_PREFIX_.'cms_block`
 				SET `location` = '.(int)(Tools::getvalue('block_location')).',
